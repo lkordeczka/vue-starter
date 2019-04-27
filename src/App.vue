@@ -2,8 +2,9 @@
   <div id="app">
     <h1>Witamy w systemie zapisów</h1>
       <div v-if="email.length > 0">
-        <p> Zalogowany jako {{email}}</p>
-        <button @click="logMeOut()">Wyloguj</button>      
+        <logged-in-page :email="email" 
+                        @logout="logMeOut()">
+        </logged-in-page>
       </div>
       <div v-else>
         <login-form @login="logMeIn($event)"
@@ -23,9 +24,10 @@
 <script>
   import "milligram";
   import LoginForm from "./LoginForm"
+  import LoggedInPage from "./LoggedInPage"
   
   export default {
-    components: {LoginForm},
+    components: {LoginForm, LoggedInPage},
     data(){
       return {
         email: ''
